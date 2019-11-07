@@ -43,3 +43,19 @@ const fs = require('fs');
 //     else console.log("pliki ktore sa w srodku to:", files);
 // })
 
+//--------READFILE
+
+// fs.readFile('./imiona.txt', 'utf8', (err, data) =>{
+//     if(err) throw Error(err);
+//     else console.log("zawartosc pliku:", data.toString());
+// })
+
+let names;
+try{
+    names = fs.readFile('./imiona.txt', 'utf8')
+}
+catch (err){
+    names = false;
+}
+
+console.log(names);
