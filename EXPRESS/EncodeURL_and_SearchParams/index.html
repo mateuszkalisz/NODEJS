@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <form action="">
+        <label for="imie">Imie
+            <input id="imie" type="text">
+        </label>
+        <label for="nazwisko">Nazwisko
+            <input id="nazwisko" type="text">
+        </label>
+        <button type="submit">Wygeneruj odnosnik</button>
+
+    </form>
+
+    <a href="">Jestem odnosnikiem</a>
+
+    <script>
+
+        const nameInput = document.querySelector("#imie");
+        const surnameInput = document.querySelector("#nazwisko");
+        const a = document.querySelector("a");
+        const form = document.querySelector("form");
+
+        form.addEventListener("submit", (e)=>{
+            e.preventDefault();
+            const name = nameInput.value;
+            const surname = surnameInput.value;
+
+            // const url = `/?name=${encodeURIComponent(name)}&surname=${encodeURIComponent(surname)}`;
+
+            const params = new URLSearchParams({
+                name,
+                surname,
+            });
+
+            const url = '/?' + params;
+
+            a.setAttribute('href', url);
+
+            alert("odnosnik wygenerowany!");
+
+        })
+
+
+
+    </script>
+</body>
+</html>
