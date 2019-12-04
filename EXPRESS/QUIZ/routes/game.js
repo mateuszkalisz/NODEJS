@@ -1,5 +1,6 @@
 function gameRoutes(app) {
-let goodAnwers = 0;
+let goodAnswers = 0;
+let isGameOver = false;
 let callToAFriendUsed = false;
 let callToACrowdUsed = false;
 let halfOnHalfUsed = false;
@@ -23,13 +24,18 @@ const questions = [
 ];
 
 app.get('/question', (req,res)=>{
-    if(goodAnwers===questions.length){
+    if(goodAnswers===questions.length){
         res.json({
             winner: 'true',
         });
     }
+    if(isGameOver){
+        res.json({
+            loser: 'true',
+        });
+    }
     else{
-        const nextQuestion = questions[goodAnwers];
+        const nextQuestion = questions[goodAnswers];
         const {question, answers} = nextQuestion;
 
         res.json({
@@ -40,17 +46,56 @@ app.get('/question', (req,res)=>{
 })
 
 app.post('/answer/:index', (req,res)=>{
+    
     const {index} = req.params;
 
-    const currentQuestion = questions[goodAnwers];
-    console.log(questions);
+    const currentQuestion = questions[goodAnswers];
 
+    const isGoodAnswer = currentQuestion.correctAnswer === Number(index);
+
+        if(isGoodAnswer){
+            goodAnswers++;
+        }
+        else{
+            isGameOver = true;
+        }
+
+        if(isGameOver){
+            res.json({
+                loser: true,
+            })
+        }
 
         res.json({
-            correct: currentQuestion.correctAnswer === Number(index) ? true : false
+            correct: isGoodAnswer,
+            goodAnswers,
         });
 
 })
+
+
+app.get('/help/friend', (req,res)=>{
+    if(callToAFriendUsed) {
+        return res.json({
+            text: 'To koło ratunkowe było już wykorzystane',
+        });
+    }
+
+    callToAFriendUsed = true;
+
+    const doesFriendKnowAnswer = Math.random() > 0.5;
+
+    const currentQuestion = questions[goodAnswers];
+
+    res.json({
+        text: doesFriendKnowAnswer ? `Wydaje mi sie że odpowiedź to: ${currentQuestion.answers[currentQuestion.correctAnswer]}` : 'hm no nie wiem...'
+    })
+
+})
+
+
+
+
 
 }
 

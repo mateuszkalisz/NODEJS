@@ -5,17 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Koderzy</title>
+
+    <style>
+    
+    .answerButton{
+        background-color: bisque;
+        padding: 20px;
+        border: 3px solid black;
+        margin: 10px;
+        width: 200px;
+        cursor: pointer;
+    }
+    .answerButton:hover{
+        background-color: burlywood;
+    }
+
+    </style>
+
 </head>
 <body>
 
-    <h2>Poprawne odpowiedzi: <span id="good-answers">0</span></h2>
     <h1>Koderzy</h1>
 
-    <div id='question'></div>
-    <button id='answer1' data-answer="0"></button>
-    <button id='answer2' data-answer="1"></button>
-    <button id='answer3' data-answer="2"></button>
-    <button id='answer4' data-answer="3"></button>
+    <h2>Poprawne odpowiedzi: <span id="good-answers">0</span></h2>
+
+    <div id="game-board">
+        <div id="tip"></div>
+
+        <div class="answerButton" id="callToAFriend">Tel do przyjaciela </div>
+        <div class="answerButton" id="halfOnHalf">Pół na pół</div>
+        <div class="answerButton" id="callToACrowd">Pytanie do publiczności</div>
+
+        <div id='question'></div>
+        <button id='answer1' data-answer="0"></button>
+        <button id='answer2' data-answer="1"></button>
+        <button id='answer3' data-answer="2"></button>
+        <button id='answer4' data-answer="3"></button>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
