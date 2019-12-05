@@ -83,12 +83,34 @@ app.get('/help/friend', (req,res)=>{
 
     callToAFriendUsed = true;
 
-    const doesFriendKnowAnswer = Math.random() > 0.5;
+    const doesFriendKnowAnswer = Math.random() < 0.8;
 
     const currentQuestion = questions[goodAnswers];
 
     res.json({
         text: doesFriendKnowAnswer ? `Wydaje mi sie że odpowiedź to: ${currentQuestion.answers[currentQuestion.correctAnswer]}` : 'hm no nie wiem...'
+    })
+
+})
+
+
+app.get('/help/halfonhalf', (req,res)=>{
+    if(halfOnHalfUsed) {
+        return res.json({
+            text: 'To koło ratunkowe było już wykorzystane',
+        });
+    }
+
+    halfOnHalfUsed = true;
+
+    const currentQuestion = questions[goodAnswers];
+    
+    const firstHelperIndex = currentQuestion.correctAnswer;
+    const secondHelperIndex = currentQuestion.correctAnswer > 1 ? currentQuestion.correctAnswer-1 : currentQuestion.correctAnswer+1;
+
+    res.json({
+        first: firstHelperIndex,
+        second: secondHelperIndex,
     })
 
 })

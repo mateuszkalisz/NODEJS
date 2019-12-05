@@ -79,3 +79,51 @@ function callToAFriend(){
 }
 
 document.querySelector('#callToAFriend').addEventListener('click', callToAFriend);
+
+let isPossible = true;
+
+function halfOnHalf(){
+    fetch(`/help/halfonhalf`, {
+        method: 'GET',
+        
+    })
+    .then(r => r.json())
+    .then(data => {
+        if(isPossible){
+        
+        isPossible = false;
+        let answers = document.querySelectorAll(".ans");
+        answers = [...answers];
+        
+        for(i=0; i<answers.length; i++){
+            if(i==data.first){
+                answers[i].style.display = "inline-block";
+            }
+            else if(i==data.second){
+                answers[i].style.display = "inline-block";
+            }
+            else{
+                answers[i].style.display = "none";
+            }
+        }
+        
+        setTimeout(()=>{
+            let answers = document.querySelectorAll(".ans");
+            answers = [...answers];
+        
+            answers.forEach(answer => answer.style.display = "inline-block");  
+        },3000);
+        }
+        else{
+            tip.innerText = data.text;
+        }
+
+    });
+}
+
+document.querySelector('#halfOnHalf').addEventListener('click', halfOnHalf);
+
+
+
+
+
