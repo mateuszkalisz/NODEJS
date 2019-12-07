@@ -115,9 +115,38 @@ app.get('/help/halfonhalf', (req,res)=>{
 
 })
 
+app.get('/help/callToACrowd', (req,res)=>{
+
+    if(callToACrowdUsed) {
+        return res.json({
+            text: 'To koło ratunkowe było już wykorzystane',
+        });
+    }
+
+    const chart = [10,20,30,40];
+    
+    callToACrowdUsed = true;
+
+    for(i=chart.length-1; i>0; i--){
+        const change = Math.floor(Math.random() * 20 - 10);
+
+        chart[i] += change;
+        chart[i-1] -=change;
+
+    }
+
+    const currentQuestion = questions[goodAnswers];
+
+    const {correctAnswer} = currentQuestion;
+
+    [chart[3], chart[correctAnswer]] = [chart[correctAnswer], chart[3]]; 
 
 
+    res.json({
+        chart,
+    });
 
+})
 
 }
 

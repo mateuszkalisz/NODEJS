@@ -82,14 +82,8 @@ document.querySelector('#callToAFriend').addEventListener('click', callToAFriend
 
 let isPossible = true;
 
-function halfOnHalf(){
-    fetch(`/help/halfonhalf`, {
-        method: 'GET',
-        
-    })
-    .then(r => r.json())
-    .then(data => {
-        if(isPossible){
+function handleHalfFeedback(data){
+    if(isPossible){
         
         isPossible = false;
         let answers = document.querySelectorAll(".ans");
@@ -117,13 +111,39 @@ function halfOnHalf(){
         else{
             tip.innerText = data.text;
         }
+}
 
+function halfOnHalf(){
+    fetch(`/help/halfonhalf`, {
+        method: 'GET',
+        
+    })
+    .then(r => r.json())
+    .then(data => {
+        handleHalfFeedback(data);
     });
 }
 
 document.querySelector('#halfOnHalf').addEventListener('click', halfOnHalf);
 
+function handleCallToACrowd(data){
+    if(typeof data.text === "string"){
+        tip.innerText = data.text;
+    } else{
+        data.chart.forEach((percent , index)=>{
+            buttons[index].innerText = `${buttons[index].innerText} : ${percent}%`;
+        })
+    }
+}
 
+function callToACrowd(){
+    fetch('/help/callToACrowd', {
+        method: 'GET'
+    })
+    .then(r => r.json())
+    .then(data =>{
+        handleCallToACrowd(data)
+    });
+}
 
-
-
+document.querySelector('#callToACrowd').addEventListener('click', callToACrowd);
