@@ -17,7 +17,7 @@ function fillQuestionElements(data) {
     if(data.loser === 'true'){
         gameboard.style.display = 'none';
         h2.innerText = 'PRZEGRAŁEŚ/AŚ!!! :('
-        return;
+        return; 
     }
 
     question.innerText = data.question;
