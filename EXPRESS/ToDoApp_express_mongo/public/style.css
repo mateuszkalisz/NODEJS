@@ -1,0 +1,125 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.wrapper{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+position: absolute;
+/* background-color: blanchedalmond; */
+width: 80vw;
+height: 80vh;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+text-transform: uppercase;
+border: 5px solid black;
+}
+
+h1{
+    /* background-color: burlywood; */
+    padding: 20px;
+}
+
+div.buttons{
+    flex-grow: 1;
+    /* background-color: yellowgreen; */
+    flex-direction: row;
+    width: 100%;
+}
+
+div.buttons ul{
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+    align-content: center;
+    height: 100%;
+}
+
+div.buttons ul li{
+    display: block;
+    /* background-color: cornflowerblue; */
+    flex-grow: 1;
+    text-align: center;
+}
+
+div.buttons ul li a{
+    display: block;
+    text-decoration: none;
+    font-size: 22px;
+    background-color: darkred;
+    color: white;
+    margin: 0px 70px;
+    padding: 10px 0;
+    border: 3px solid black;
+}
+
+div.buttons ul li a:hover{
+    background-color: white;
+    color: black;
+    border-color: darkred;
+}
+
+div.form{
+    flex-grow: 2;
+}
+
+div.form form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input{
+    width: 40vw;
+    font-size: 30px;
+    margin: 20px;
+    border: 2px solid black;
+}
+
+input:focus{
+    box-shadow: inset 0 0 1em red, 0 0 1em gray;
+}
+
+button{
+    width: 300px;
+    font-size: 22px;
+    line-height: 100%;
+    text-align: center;
+    padding: 10px;
+    text-transform: uppercase;
+    background-color: yellow;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+button:hover{
+    font-size: 22px;
+    font-weight: bold;
+}
+
+div.list{
+    display: flex;
+    flex-grow: 8;
+    background-color: gainsboro;
+    width: 80%;
+    margin-bottom: 50px;
+    border: 2px dotted black;
+}
+
+div.list div.todo{
+    flex-grow: 1;
+    padding: 10px 0;
+    text-align: center;
+    border-right: 2px dotted black;
+}
+
+div.list div.done{
+    padding: 10px 0;
+    flex-grow: 1;
+    text-align: center;
+}
