@@ -13,28 +13,30 @@
         <h1>TO DO APP </h1>
         <div class="buttons">
             <ul>
-                <li><a href="#">Pokaż/ukryj listę</a></li>
-                <li><a href="#">Usuń wykonane</a></li>
-                <li><a href="#">Wyczyść wszystko</a></li>
+                <li id="button1"><a href="#">Pokaż/ukryj listę</a></li>
+                <li id="button2"><a href="#">Usuń wykonane</a></li>
+                <li id="button3"><a href="#">Wyczyść wszystko</a></li>
             </ul>
         </div>
         <div class="form">
             <form action="">
                 <input type="text">
-                <button>Dodaj zadanie</button>
+                <button id="button4">Dodaj zadanie</button>
             </form>
         </div>
         <div class="list">
             <div class="todo">
                 <h2>Zadania do zrobienia</h1>
+                    <ul id="todo"></ul>
             </div>
             <div class="done">
                 <h2>Zadania zrobione</h1>
+                    <ul id="done"></ul>
             </div>
         </div>
     </div>
 
-
+<script src="script.js"></script>
 </body>
 
 </html>
