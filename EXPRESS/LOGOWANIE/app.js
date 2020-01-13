@@ -2,7 +2,10 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 const path = require('path');
+const cookieParser = require('cookie-parser');
 let startGame = false;
+let cookieName = "";
+
 
 const users = [
     {
@@ -20,6 +23,7 @@ const users = [
 
 app.listen(port);
 
+app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, '/public')));
 
@@ -30,6 +34,9 @@ const root = path.join(__dirname, '/public');
 app.use(express.json());
 
 app.get('/', (req,res)=>{
+
+    res.clearCookie('visitor_name');
+
     res.sendFile(indexHtml, {
         root: root,
     });
@@ -41,6 +48,7 @@ app.post('/login', (req,res)=>{
 
     if(correctLogPass !== -1){
         startGame = true;
+        cookieName = req.body.name;
     }
     else{
         startGame = false;
@@ -57,12 +65,25 @@ app.get('/login', (req,res)=>{
 })
 
 app.get('/game', (req,res)=>{
+ 
+    // const dt = new Date();
+    // dt.setDate(dt.getDate()+7);
+
+
     if(startGame){
+
+        const cookieDt = 3 * 24 * 60 * 60 * 1000;
+        res.cookie('visitor_name', cookieName, {
+            // expires: dt,
+            maxAge: cookieDt,
+        });
+
         res.sendFile(gameHtml, {
             root: root,
         });
     }
     else{
+
         res.redirect('/');
     }
 })
@@ -70,5 +91,12 @@ app.get('/game', (req,res)=>{
 app.post('/logout', (req,res)=>{
     if(req.body.logout){
         startGame = false;
+        res.redirect('/logout');
     };
 })
+
+app.get('/logout', (req,res)=>{
+    res.clearCookie('visitor_name');
+    res.end();
+})
+
