@@ -10,6 +10,15 @@ const button = document.querySelector('a');
 // infoLogout.style.display = "none";
 
 button.addEventListener('click', ()=>{
+
+    // const params = new URLSearchParams({
+    //     name: name.value,
+    // });
+
+    // const url = 'http://localhost:3000/game/?'+params;
+
+    // button.setAttribute('href', url);
+
     fetch('/login', {
         method: 'POST',
         body: JSON.stringify({

@@ -5,7 +5,12 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 let startGame = false;
 let cookieName = "";
-
+let result = {
+    points: 0,
+    wins: 0,
+    draws: 0,
+    losses: 0,
+};
 
 const users = [
     {
@@ -65,10 +70,8 @@ app.get('/login', (req,res)=>{
 })
 
 app.get('/game', (req,res)=>{
- 
     // const dt = new Date();
     // dt.setDate(dt.getDate()+7);
-
 
     if(startGame){
 
@@ -89,6 +92,9 @@ app.get('/game', (req,res)=>{
 })
 
 app.post('/logout', (req,res)=>{
+
+    console.log(req.body);
+
     if(req.body.logout){
         startGame = false;
         res.redirect('/logout');
@@ -96,7 +102,19 @@ app.post('/logout', (req,res)=>{
 })
 
 app.get('/logout', (req,res)=>{
+    
     res.clearCookie('visitor_name');
     res.end();
+    result = 0;
+})
+
+app.get('/summary', (req,res)=>{
+    res.json({
+        points: result.points,
+        wins: result.wins,
+        draws: result.draws,
+        losses: result.losses,
+        name: req.cookies.visitor_name,
+    });
 })
 
