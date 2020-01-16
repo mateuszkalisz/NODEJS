@@ -1,0 +1,38 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.all{
+    font-size: 24px;
+    position: relative;
+}
+
+.wrapper{
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+}
+
+.first, .second, .third{
+    display: inline-block;
+    width: 33%;
+    cursor: pointer;
+}
+
+img{
+    width: 33%;
+    transform: translateX(50%);
+}
+
+img:hover{
+    box-shadow: 10px 10px 100px 0px rgba(0,0,0,0.8);
+}
+
+.ai{
+    position: fixed;
+    bottom: 200px;
+}

@@ -5,16 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>GRA</h1>
-    <div class="welcome">Witaj <span id="welcome"></span>! Chcesz zagrać? Graj!!!</div>
+<div class="all">
+    <a id="logout" href="/">Wyloguj</a>
+    <div class="welcome"><h1>Witaj <span id="welcome"></span>! Chcesz zagrać? Graj!!!</h1></div>
     <div>Liczba pkt: <span id="points"></span></div>
     <div>Wygrane: <span id="wins"></span></div>
     <div>Remisy: <span id="draws"></span></div>
     <div>Przegrane: <span id="losses"></span></div>
 
-    <a id="logout" href="/">Wyloguj</a>
+    <div class="wrapper">
+        <div class="first"><img src="/img/paper.png"></div>
+        <div class="second"><img src="/img/scissors.png"></div>
+        <div class="third"><img src="/img/stone.png"></div>
+    </div>
+
+    <div class="ai">
+        
+        <span>Wybór komputera</span>
+        <div class="aiChoice"><img src=""></div>
+
+    </div>
+</div>
     <script src="game.js"></script>
 </body>
 </html>
