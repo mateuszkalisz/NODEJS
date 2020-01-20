@@ -5,6 +5,13 @@ const draws = document.querySelector('#draws');
 const losses = document.querySelector('#losses');
 const welcome = document.querySelector('#welcome');
 const playerChoices = document.querySelectorAll('.wrapper div');
+const aiChoiceImg = document.querySelector('.aiChoice');
+const span = document.createElement("span");
+span.textContent = "";
+aiChoiceImg.appendChild(span);
+
+let colorIndex = 0;
+let color = "";
 
 
 function loadSummary(){
@@ -68,18 +75,53 @@ function whoWin(playerChoice){
     const aiChoice = randomChoice[0].choice;
 
     const userChoice = playerChoice.className;
+
+    let score = 0;
     
     if(userChoice == aiChoice){
-        console.log("remis");
+        // console.log("remis");
+        score = 1;
     }
     else if((userChoice == "first" && aiChoice == "third") || (userChoice == "second" && aiChoice == "first") || (userChoice == "third" && aiChoice == "second")){
-        console.log("wygrales");
+        // console.log("wygrales");
+        score = 3;
     }
     else{
-        console.log("przegrales");
+        // console.log("przegrales");
+        score = 0;
     }
-}
 
+    fetch('/whoWin', {
+        method: 'POST',
+        body: JSON.stringify({
+            score,
+        }),
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+
+
+
+    if(colorIndex%2 == 0){
+        color = 'red';
+        colorIndex++;
+    }
+    else{
+        color = 'blue';
+        colorIndex++;
+    }
+
+    // console.log(color);
+
+    span.style.color = color;
+
+    if(aiChoice == "first") span.textContent = "PAPIER";
+    else if(aiChoice == "second") span.textContent = "NOŻYCE";
+    else if(aiChoice == "third") span.textContent = "KAMIEŃ";
+
+    loadSummary();
+}
 
 
 playerChoices.forEach(playerChoice => playerChoice.addEventListener('click', ()=>{

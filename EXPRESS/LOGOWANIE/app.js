@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 const path = require('path');
 const cookieParser = require('cookie-parser');
 let startGame = false;
@@ -105,7 +105,10 @@ app.get('/logout', (req,res)=>{
     
     res.clearCookie('visitor_name');
     res.end();
-    result = 0;
+    result.points = 0;
+    result.wins = 0;
+    result.draws = 0;
+    result.losses = 0;
 })
 
 app.get('/summary', (req,res)=>{
@@ -118,3 +121,23 @@ app.get('/summary', (req,res)=>{
     });
 })
 
+function renderResults(score){
+    if(score == 0){
+        result.losses++;
+    }
+    else if(score == 1){
+        result.points++;
+        result.draws++;
+    }
+    else if(score == 3){
+        result.points++;
+        result.points++;
+        result.points++;
+        result.wins++;
+    }
+}
+
+app.post('/whoWin', (req,res)=>{
+    const {score} = req.body;
+    renderResults(score);
+})
