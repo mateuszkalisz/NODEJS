@@ -104,11 +104,11 @@ app.post('/logout', (req,res)=>{
 app.get('/logout', (req,res)=>{
     
     res.clearCookie('visitor_name');
-    res.end();
     result.points = 0;
     result.wins = 0;
     result.draws = 0;
     result.losses = 0;
+    res.end();
 })
 
 app.get('/summary', (req,res)=>{
@@ -140,4 +140,5 @@ function renderResults(score){
 app.post('/whoWin', (req,res)=>{
     const {score} = req.body;
     renderResults(score);
+    res.end();
 })
