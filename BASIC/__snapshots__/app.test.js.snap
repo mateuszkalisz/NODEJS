@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`works 1`] = `
+Object {
+  "header": Object {
+    "connection": "close",
+    "content-length": "5",
+    "content-type": "text/html; charset=utf-8",
+    "date": "Tue, 11 Feb 2020 19:59:28 GMT",
+    "etag": "W/\\"5-M9myltz/OZ1KnTI273DXvFZqJqM\\"",
+  },
+  "req": Object {
+    "data": undefined,
+    "headers": Object {
+      "user-agent": "node-superagent/3.8.3",
+    },
+    "method": "GET",
+    "url": "http://127.0.0.1:64750/",
+  },
+  "status": 200,
+  "text": "WITAJ",
+}
+`;
