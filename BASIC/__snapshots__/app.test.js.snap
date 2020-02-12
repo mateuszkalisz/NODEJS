@@ -1,5 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`handles pages that are not found 1`] = `
+"<!DOCTYPE html>
+<html lang=\\"en\\">
+<head>
+<meta charset=\\"utf-8\\">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot GET /whatever</pre>
+</body>
+</html>
+"
+`;
+
 exports[`works 1`] = `
 Object {
   "header": Object {
